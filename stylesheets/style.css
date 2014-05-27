@@ -1,13 +1,23 @@
 body {
-  background-color: black;
-  text-align: center;
+  background: rgb(0,0,0); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(1,110,255,1) 51%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(51%,rgba(1,110,255,1)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(1,110,255,1) 51%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(1,110,255,1) 51%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(1,110,255,1) 51%,rgba(0,0,0,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(1,110,255,1) 51%,rgba(0,0,0,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  /*opacity: 0.8;*/
 }
 
-.container {
-  width: 80%;
-  height: 80%;
-  position: fixed;
-/*  border: 2px solid black;*/
+#container {
+  width: 40%;
+  height: 60%;
+  position: relative;
+  top: 5%;
+  /*border: 2px solid black;*/
   -webkit-perspective: 1200px;
   -moz-perspective: 1200px;
   -o-perspective: 1200px;
@@ -15,9 +25,9 @@ body {
 }
 
 #carousel {
+  position: absolute;
   width: 100%;
   height: 100%;
-  position: absolute;
 /*  -webkit-transform: translateZ( -1319px );
   -moz-transform: translateZ( -1319px );
   -o-transform: translateZ( -1319px );
@@ -30,28 +40,94 @@ body {
   -moz-transition: -moz-transform 1s;
   -o-transition: -o-transform 1s;
   transition: transform 1s;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
 }
 
 #carousel figure {
-  display: block;
   position: absolute;
+  display: block;
   width: 100%;
   height: 100%;
   text-align: center;
   margin: 0 auto;
-  border-radius: 25px 0 25px 0;
+  border-radius: 25px;
+  border: 3px solid rgba(255, 255, 255, 0.7);
+  -moz-box-shadow: 0px 0px 15px 3px rgba(255, 255, 255, 0.7);
+  -webkit-box-shadow: 0px 0px 15px 3px rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 0px 15px 3px rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  overflow: auto;
+  opacity: 0.2;
+/*  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;*/
 }
 
-#carousel figure:nth-child(1) { background: hsla(   0, 100%, 50%, 1.0 ); }
-#carousel figure:nth-child(2) { background: hsla(  40, 100%, 50%, 1.0 ); }
-#carousel figure:nth-child(3) { background: hsla(  80, 100%, 50%, 1.0 ); }
-#carousel figure:nth-child(4) { background: hsla( 120, 100%, 50%, 1.0 ); }
-#carousel figure:nth-child(5) { background: hsla( 160, 100%, 50%, 1.0 ); }
-#carousel figure:nth-child(6) { background: hsla( 200, 100%, 50%, 1.0 ); }
-#carousel figure:nth-child(7) { background: hsla( 240, 100%, 50%, 1.0 ); }
-#carousel figure:nth-child(8) { background: hsla( 280, 100%, 50%, 1.0 ); }
-#carousel figure:nth-child(9) { background: hsla( 320, 100%, 50%, 1.0 ); }
+#carousel figure table {
+  color: white;
+}
+
+#carousel figure img {
+  border-radius: 15px;
+/*  -moz-box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.5);
+  -webkit-box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.5);*/
+}
+
+/*#carousel figure:hover {
+  opacity: 0.5;
+}*/
+
+#dock {
+  position: fixed;
+  bottom: 2px;
+  background-image:url("../images/skybg.png");
+  background-size: 100% 100%;
+  opacity: 0.8;
+  vertical-align: bottom;
+  display: table;
+/*  margin-bottom: 25px;*/
+}
+
+#dock img:hover {
+  -moz-box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.5);
+  -webkit-box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.5);
+}
+
+#dock img {
+  margin-bottom: 10px;
+}
+
+#options {
+  position: absolute;
+  bottom: -60px;
+  left: 40%;
+  opacity: 0.65;
+}
+
+#time {
+  position: fixed;
+  top: 50px;
+  left: 600px;
+  font-size: 1.2em;
+}
+
+img {
+  /*opacity: 0.7;*/
+}
+
+/*#carousel figure:nth-child(1) { background: hsla(187, 78%, 38%, 0.9); }
+#carousel figure:nth-child(2) { background: hsla(187, 78%, 38%, 0.9); }
+#carousel figure:nth-child(3) { background: hsla(187, 78%, 38%, 0.9); }
+#carousel figure:nth-child(4) { background: hsla(187, 78%, 38%, 0.9); }
+#carousel figure:nth-child(5) { background: hsla(187, 78%, 38%, 0.9); }
+#carousel figure:nth-child(6) { background: hsla(187, 78%, 38%, 0.9); }
+#carousel figure:nth-child(7) { background: hsla(187, 78%, 38%, 0.9); }
+#carousel figure:nth-child(8) { background: hsla(187, 78%, 38%, 0.9); }
+#carousel figure:nth-child(9) { background: hsla(187, 78%, 38%, 0.9); }*/
 
 /*#carousel figure:nth-child(1) {
   -webkit-transform: rotateY(   0deg ) translateZ( 1319px );
