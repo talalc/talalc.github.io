@@ -36,15 +36,15 @@ var Profile = {
       $("<figure>").css('transform',transformString).appendTo(carousel);
     }
 
-    $("figure").eq(0).html("med student turned developer<br><br><br>email<br><br>GitHub<br><br>LinkedIn<br><br>Twitter");
+    $("figure").eq(0).addClass("contact").html("<br><a href=\"mailto:talalchoudry@gmail.com\">email <i class=\"fa fa-envelope\"></i></a><br><br><a href=\"http://github.com/talalc\">GitHub <i class=\"fa fa-github\"></i></a><br><br><a href=\"http://linkedin.com/in/talalc\">LinkedIn <i class=\"fa fa-linkedin-square\"></i></a><br><br><a href=\"http://twitter.com/talalchoudry\">twitter <i class=\"fa fa-twitter-square\"></i></a>");
     $("figure").eq(1).html("<table align=\"center\"><tr><td>Languages<br><br>Ruby<br><br>JavaScript<br><br>C++<br><br>Java<br><br>HTML<br><br>CSS<br><br><br>Frameworks & Libraries<br><br>Ruby on Rails<br><br>Sinatra<br><br>jQuery<br><br>Backbone</td><td>Testing<br><br>RSpec<br><br>Capybara<br><br>Jasmine<br><br><br>Database<br><br>PostgreSQL<br><br><br>Version Control<br><br>Git<br><br>GitHub<br><br>Heroku<br><br><br>Management<br><br>Pivotal Tracker<br><br>TDD</td></tr></table>");
-    $("figure").eq(2).html("Experience");
-    $("figure").eq(3).html("Education");
+    $("figure").eq(2).html("Experience <i class=\"fa fa-building\" id=\"mail\"></i>");
+    $("figure").eq(3).html("Education <i class=\"fa fa-graduation-cap\" id=\"mail\"></i>");
     $("figure").eq(4).html("Hobbies");
-    $("figure").eq(5).html("Project1<br><br><img src=\"images/placeit1.png\">");
-    $("figure").eq(6).html("Project2<br><br><img src=\"images/placeit2.png\">");
-    $("figure").eq(7).html("Project3<br><br><img src=\"images/placeit3.png\">");
-    $("figure").eq(8).html("Project4");
+    $("figure").eq(5).html("Project 1<br><br>Comic Authority<br><br><img src=\"images/placeit1.png\"><br><br><a href=\"http://cab2.herokuapp.com\">heroku</a><br><br><a href=\"http://github.com/talalc/cab2\">github</a>");
+    $("figure").eq(6).html("Project 2<br><br>lawyerD<br><br><img src=\"images/placeit2.png\"><br><br><a href=\"http://lawyerd.herokuapp.com\">heroku</a><br><br><a href=\"http://github.com/talalc/lawyerd\">github</a>");
+    $("figure").eq(7).html("Team Project 3<br><br>drinkr<br><br><img src=\"images/placeit3.png\"><br><br><a href=\"http://drink-r.herokuapp.com\">heroku</a><br><br><a href=\"http://github.com/Oneill38/drinkr\">github</a>");
+    $("figure").eq(8).html("Project 4<br><br>r3na<br><br><img src=\"images/placeit4.png\"><br><br><a href=\"http://r3na.herokuapp.com\">heroku</a><br><br><a href=\"http://github.com/talalc/rena\">github</a>");
 
     $("#options button").on('click', Profile.onNavButtonClick );
     $("body").on('keyup', Profile.onArrowPress );
@@ -130,22 +130,22 @@ var Profile = {
   onDockClick: function(event){
     var choice = event.target.id;
     switch (choice){
+      case "profile":
+        page = 0;
+        break;
       case "education":
         page = 3;
-        break;
-      case "mail":
-        page = 0;
-        break;
-      case "twitter":
-        page = 0;
         break;
       case "experience":
         page = 2;
         break;
-      case "linkedin":
+      case "project":
+        page = 5;
+        break;
+      case "resume":
         page = 0;
         break;
-      case "github":
+      case "mail":
         page = 0;
         break;
       case "phone":
