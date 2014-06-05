@@ -18,69 +18,47 @@ var Profile = {
     }
 
     panelCount = 9;
-    theta = 0;
-    currentPage = 0;
-    // tz = Math.round( ( $( window ).width() / 2 ) / Math.tan( Math.PI / panelCount ) );
-    var container = $("#container");
-    // var containerLeft = ($(window).width() - $(container).width())/2;
-    var containerLeft = '10%';
-    container.css('left', containerLeft);
-    // var carousel = $("<div>").attr('id','carousel').attr('width',$( window ).width()).css('transform','translateZ( -'+tz+'px )').appendTo(container);
 
-    tz = Math.round( ( container.width() / 2 ) / Math.tan( Math.PI / panelCount ) )  + 150;
+    Profile.resizePage();
 
-    var carousel = $("<div>").attr('id','carousel').css('transform','translateZ( -'+tz+'px )').appendTo(container);
-
-    for (var i=0; i < panelCount; i++){
-      var transformString = 'rotateY('+i*40+'deg ) translateZ(' + tz+'px )';
-      $("<figure>").css('transform',transformString).appendTo(carousel);
-    }
-
-    $("figure").eq(0).addClass("contact").html("<br><a href=\"mailto:talalchoudry@gmail.com\">email <i class=\"fa fa-envelope\"></i></a><br><br><a href=\"http://github.com/talalc\">GitHub <i class=\"fa fa-github\"></i></a><br><br><a href=\"http://linkedin.com/in/talalc\">LinkedIn <i class=\"fa fa-linkedin-square\"></i></a><br><br><a href=\"http://twitter.com/talalchoudry\">twitter <i class=\"fa fa-twitter-square\"></i></a>");
-    $("figure").eq(1).html("<table align=\"center\"><tr><td>Languages<br><br>Ruby<br><br>JavaScript<br><br>C++<br><br>Java<br><br>HTML<br><br>CSS<br><br><br>Frameworks & Libraries<br><br>Ruby on Rails<br><br>Sinatra<br><br>jQuery<br><br>Backbone</td><td>Testing<br><br>RSpec<br><br>Capybara<br><br>Jasmine<br><br><br>Database<br><br>PostgreSQL<br><br><br>Version Control<br><br>Git<br><br>GitHub<br><br>Heroku<br><br><br>Management<br><br>Pivotal Tracker<br><br>TDD</td></tr></table>");
-    $("figure").eq(2).html("Experience <i class=\"fa fa-building\" id=\"mail\"></i>");
-    $("figure").eq(3).html("Education <i class=\"fa fa-graduation-cap\" id=\"mail\"></i>");
-    $("figure").eq(4).html("Hobbies");
-    $("figure").eq(5).html("Project 1<br><br>Comic Authority<br><br><img src=\"images/placeit1.png\"><br><br><a href=\"http://cab2.herokuapp.com\">heroku</a><br><br><a href=\"http://github.com/talalc/cab2\">github</a>");
-    $("figure").eq(6).html("Project 2<br><br>lawyerD<br><br><img src=\"images/placeit2.png\"><br><br><a href=\"http://lawyerd.herokuapp.com\">heroku</a><br><br><a href=\"http://github.com/talalc/lawyerd\">github</a>");
-    $("figure").eq(7).html("Team Project 3<br><br>drinkr<br><br><img src=\"images/placeit3.png\"><br><br><a href=\"http://drink-r.herokuapp.com\">heroku</a><br><br><a href=\"http://github.com/Oneill38/drinkr\">github</a>");
-    $("figure").eq(8).html("Project 4<br><br>r3na<br><br><img src=\"images/placeit4.png\"><br><br><a href=\"http://r3na.herokuapp.com\">heroku</a><br><br><a href=\"http://github.com/talalc/rena\">github</a>");
+    setInterval(function(){
+      Profile.rotateCircle();
+    }, 1000);
 
     $("#options button").on('click', Profile.onNavButtonClick );
+
     $("body").on('keyup', Profile.onArrowPress );
+
+    document.body.addEventListener('mousewheel',Profile.onScroll);
+
+    $("#dock").on('click', Profile.onDockClick);
 
     $( window ).resize( Profile.resizePage );
 
+  },
+
+  resizePage: function(event){
+    tz = Math.round( ( $("#container").width() / 2 ) / Math.tan( Math.PI / panelCount ) )  + 150;
+    $("#carousel").css('transform','translateZ( -'+tz+'px )');
+    for (var i=0; i < panelCount; i++){
+      var transformString = 'rotateY('+i*40+'deg ) translateZ(' + tz+'px )';
+      $("figure").eq(i).css('transform',transformString);
+    }
+
+    theta = 0;
+    Profile.rotateCarousel(theta);
+
     var dock = $("#dock");
-    // dock.html("<img width=\"" + $(window).width()/1.5 + "\" src=\"images/bluebg.png\">");
     dock.css('width', $(window).width()/1.5);
     dock.css('height', $(window).height()/10);
     var dockLeft = ($(window).width() - dock.width())/2;
     dock.css('left',dockLeft);
-
-    dock.on('click', Profile.onDockClick);
-
-    document.body.addEventListener('mousewheel',Profile.onScroll);
-
-    $("figure").eq(currentPage).css('opacity', '1.0');
-    $("figure").eq((currentPage+4)%panelCount).css('backface-visibility', 'hidden');
-    $("figure").eq((currentPage+5)%panelCount).css('backface-visibility', 'hidden');
-
   },
 
   onNavButtonClick: function(event){
     var increment = parseInt( $(this).attr('data-increment') );
     theta += ( 360 / panelCount ) * increment * -1;
-    $('#carousel').css('-webkit-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
-    $('#carousel').css('-moz-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
-    $('#carousel').css('-o-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
-    $('#carousel').css('transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
-    currentPage = (-(theta/40)+panelCount)%panelCount;
-    $("figure").css('backface-visibility', 'visible');
-    $("figure").css('opacity', '0.2');
-    $("figure").eq(currentPage).css('opacity', '1.0');
-    $("figure").eq((currentPage+4)%panelCount).css('backface-visibility', 'hidden');
-    $("figure").eq((currentPage+5)%panelCount).css('backface-visibility', 'hidden');
+    Profile.rotateCarousel(theta);
   },
 
   onArrowPress: function(event){
@@ -90,42 +68,9 @@ var Profile = {
       var increment = -1;
     }
     theta += ( 360 / panelCount ) * increment * -1;
-    $('#carousel').css('-webkit-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
-    $('#carousel').css('-moz-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
-    $('#carousel').css('-o-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
-    $('#carousel').css('transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
-    currentPage = (-(theta/40)+panelCount)%panelCount;
-    $("figure").css('backface-visibility', 'visible');
-    $("figure").css('opacity', '0.2');
-    $("figure").eq(currentPage).css('opacity', '1.0');
-    $("figure").eq((currentPage+4)%panelCount).css('backface-visibility', 'hidden');
-    $("figure").eq((currentPage+5)%panelCount).css('backface-visibility', 'hidden');
+    Profile.rotateCarousel(theta);
   },
 
-  resizePage: function(event){
-    theta = 0;
-    tz = Math.round( ( $("#container").width() / 2 ) / Math.tan( Math.PI / panelCount ) )  + 150;
-    $("#carousel").css('transform','translateZ( -'+tz+'px )');
-    for (var i=0; i < panelCount; i++){
-      var transformString = 'rotateY('+i*40+'deg ) translateZ(' + tz+'px )';
-      $("figure").eq(i).css('transform',transformString);
-    }
-
-    currentPage = (-(theta/40)+panelCount)%panelCount;
-    $("figure").css('backface-visibility', 'visible');
-    $("figure").css('opacity', '0.2');
-    $("figure").eq(currentPage).css('opacity', '1.0');
-    $("figure").eq((currentPage+4)%panelCount).css('backface-visibility', 'hidden');
-    $("figure").eq((currentPage+5)%panelCount).css('backface-visibility', 'hidden');
-
-    var dock = $("#dock");
-    // dock.html("<img width=\"" + $(window).width()/1.5 + "\" src=\"images/bluebg.png\">");
-    dock.css('width', $(window).width()/1.5);
-    dock.css('height', $(window).height()/10);
-    var dockLeft = ($(window).width() - dock.width())/2;
-    dock.css('left',dockLeft);
-
-  },
 
   onDockClick: function(event){
     var choice = event.target.id;
@@ -160,16 +105,7 @@ var Profile = {
     //   var page = 0;
     // }
     theta = ( 360 / panelCount ) * page * -1;
-    $('#carousel').css('-webkit-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
-    $('#carousel').css('-moz-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
-    $('#carousel').css('-o-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
-    $('#carousel').css('transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
-    currentPage = (-(theta/40)+panelCount)%panelCount;
-    $("figure").css('backface-visibility', 'visible');
-    $("figure").css('opacity', '0.2');
-    $("figure").eq(currentPage).css('opacity', '1.0');
-    $("figure").eq((currentPage+4)%panelCount).css('backface-visibility', 'hidden');
-    $("figure").eq((currentPage+5)%panelCount).css('backface-visibility', 'hidden');
+    Profile.rotateCarousel(theta);
   },
 
   onScroll: function(event){
@@ -179,16 +115,34 @@ var Profile = {
       var increment = 1;
     }
     theta += ( 360 / panelCount ) * increment * -1;
+    Profile.rotateCarousel(theta);
+  },
+
+  rotateCarousel: function(theta){
     $('#carousel').css('-webkit-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
     $('#carousel').css('-moz-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
     $('#carousel').css('-o-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
     $('#carousel').css('transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
     currentPage = (-(theta/40)+panelCount)%panelCount;
-    $("figure").css('backface-visibility', 'visible');
     $("figure").css('opacity', '0.2');
+    $("figure").css({height: '75%', width: '75%', top: '15%'});
     $("figure").eq(currentPage).css('opacity', '1.0');
-    $("figure").eq((currentPage+4)%panelCount).css('backface-visibility', 'hidden');
-    $("figure").eq((currentPage+5)%panelCount).css('backface-visibility', 'hidden');
+    $("figure").eq(currentPage).css({height: '100%', width: '100%', top: '0%'});
+    $("figure").eq((currentPage+4)%panelCount).css('opacity', '0.0');
+    $("figure").eq((currentPage+5)%panelCount).css('opacity', '0.0');
+  },
+
+  rotateCircle: function(){
+    var random = Math.ceil(Math.random() * 360);
+    var randomB = Math.ceil(Math.random() * 10);
+    $("#circle").css('transform','rotateZ('+random+'deg)');
+    $("#circle").css('padding',randomB);
+    $("#circle").css('border', randomB+ 'px solid #53b1c3');
+    // $("#circle").css({height: random +'px', width: random+'px'});
+    for (var i=0; i < $(".circleText").length; i++){
+      var randomT = Math.ceil(Math.random() * 100);
+      $(".circleText").eq(i).css('transform','translateX('+randomT+'px) translateY('+randomT+'px) rotateZ('+(random*-1)+'deg)');
+    }
   }
 
 }
