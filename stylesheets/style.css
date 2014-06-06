@@ -9,6 +9,7 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
   font-family: 'Open Sans', sans-serif;
   color: white;
+  margin: 0;
 }
 
 #container {

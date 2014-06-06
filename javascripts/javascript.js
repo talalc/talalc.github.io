@@ -1,7 +1,7 @@
 var Profile = {
 
   onReady: function(){
-
+    $.mobile.loading().hide();
     var date = new Date();
     if (date.getHours() <= 12){
       if (date.getMinutes() < 10){
@@ -27,9 +27,9 @@ var Profile = {
 
     $("#options button").on('click', Profile.onNavButtonClick );
 
-    $("body").on('keyup', Profile.onArrowPress );
+    $(window).on('keyup', Profile.onArrowPress );
 
-    document.body.addEventListener('mousewheel',Profile.onScroll);
+    window.addEventListener('mousewheel',Profile.onScroll);
 
     $("#dock").on('click', Profile.onDockClick);
 
