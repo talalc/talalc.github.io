@@ -5,12 +5,14 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
   <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.1/jquery.mobile.min.js"></script>
   <script src="javascripts/javascript.js"></script>
 </head>
 <body>
 
   <img id="name-logo" height="100px" src="images/tc1.png">
   <div id="time"></div>
+  <br><br>
   <section id="container">
     <div id="carousel">
     <figure class="contact">
@@ -58,13 +60,13 @@
 </div>
 
   <div id="dock" align="center">
-    <i class="fa fa-user dockicon" id="profile"></i>
-    <i class="fa fa-graduation-cap dockicon" id="education"></i>
-    <i class="fa fa-building dockicon" id="experience"></i>
-    <i class="fa fa-briefcase dockicon" id="project"></i>
-    <i class="fa fa-file-text-o dockicon" id="resume"></i>
-    <i class="fa fa-envelope dockicon" id="mail"></i>
-    <i class="fa fa-phone dockicon" id="phone"></i>
+    <div class="dockicon"><div class="dockdesc">Profile</div><i class="fa fa-user" id="profile"></i></div>
+    <div class="dockicon"><div class="dockdesc">Education</div><i class="fa fa-graduation-cap " id="education"></i></div>
+    <div class="dockicon"><div class="dockdesc">Experience</div><i class="fa fa-building" id="experience"></i></div>
+    <div class="dockicon"><div class="dockdesc">Projects</div><i class="fa fa-briefcase" id="project"></i></div>
+    <div class="dockicon"><div class="dockdesc">Resume</div><i class="fa fa-file-text-o" id="resume"></i></div>
+    <div class="dockicon"><div class="dockdesc">email</div><i class="fa fa-envelope" id="mail"></i></div>
+    <div class="dockicon"><div class="dockdesc">Phone</div><i class="fa fa-phone" id="phone"></i></div>
 <!--     <img id="twitter" height="80px" src="images/twitter.svg">
     <img id="education" height="85px" src="images/college.svg">
     <img id="experience" height="75px" src="images/building.svg">
@@ -73,5 +75,6 @@
     <img id="mail" height="85px" src="images/mail.svg">
     <img id="phone" height="75px" src="images/phone.svg"> -->
   </div>
+  <img id="dockbg" height="100px" src="images/skybg.png">
 </body>
 </html>

@@ -18,8 +18,8 @@ var Profile = {
     }
 
     panelCount = 9;
-
-    Profile.resizePage();
+    theta = 0;
+    Profile.resizePage(theta);
 
     setInterval(function(){
       Profile.rotateCircle();
@@ -33,11 +33,16 @@ var Profile = {
 
     $("#dock").on('click', Profile.onDockClick);
 
-    $( window ).resize( Profile.resizePage );
+    $(".dockicon").hover(Profile.onhoverIcon, Profile.offhoverIcon);
+
+    $( window ).on( "swiperight", Profile.onSwipeRight );
+    $( window ).on( "swipeleft", Profile.onSwipeLeft );
+
+    $( window ).resize( Profile.resizePage(theta) );
 
   },
 
-  resizePage: function(event){
+  resizePage: function(theta){
     tz = Math.round( ( $("#container").width() / 2 ) / Math.tan( Math.PI / panelCount ) )  + 150;
     $("#carousel").css('transform','translateZ( -'+tz+'px )');
     for (var i=0; i < panelCount; i++){
@@ -45,14 +50,8 @@ var Profile = {
       $("figure").eq(i).css('transform',transformString);
     }
 
-    theta = 0;
     Profile.rotateCarousel(theta);
 
-    var dock = $("#dock");
-    dock.css('width', $(window).width()/1.5);
-    dock.css('height', $(window).height()/10);
-    var dockLeft = ($(window).width() - dock.width())/2;
-    dock.css('left',dockLeft);
   },
 
   onNavButtonClick: function(event){
@@ -118,6 +117,18 @@ var Profile = {
     Profile.rotateCarousel(theta);
   },
 
+  onSwipeRight: function(event){
+    increment = -1;
+    theta += ( 360 / panelCount ) * increment * -1;
+    Profile.rotateCarousel(theta);
+  },
+
+  onSwipeLeft: function(event){
+    increment = 1;
+    theta += ( 360 / panelCount ) * increment * -1;
+    Profile.rotateCarousel(theta);
+  },
+
   rotateCarousel: function(theta){
     $('#carousel').css('-webkit-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
     $('#carousel').css('-moz-transform','translateZ( -'+tz+'px ) rotateY(' + theta + 'deg)');
@@ -130,6 +141,14 @@ var Profile = {
     $("figure").eq(currentPage).css({height: '100%', width: '100%', top: '0%'});
     $("figure").eq((currentPage+4)%panelCount).css('opacity', '0.0');
     $("figure").eq((currentPage+5)%panelCount).css('opacity', '0.0');
+  },
+
+  onhoverIcon: function(event){
+    $(event.currentTarget.children[0]).css('display','inherit');
+  },
+
+  offhoverIcon: function(event){
+    $(event.currentTarget.children[0]).css('display','none');
   },
 
   rotateCircle: function(){
