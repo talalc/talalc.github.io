@@ -2,6 +2,7 @@ var Profile = {
 
   onReady: function(){
     $.mobile.loading().hide();
+
     var date = new Date();
     if (date.getHours() <= 12){
       if (date.getMinutes() < 10){
@@ -21,10 +22,6 @@ var Profile = {
     theta = 0;
     Profile.resizePage(theta);
 
-    setInterval(function(){
-      Profile.rotateCircle();
-    }, 1000);
-
     $("#options button").on('click', Profile.onNavButtonClick );
 
     $(window).on('keyup', Profile.onArrowPress );
@@ -38,11 +35,15 @@ var Profile = {
     $( window ).on( "swiperight", Profile.onSwipeRight );
     $( window ).on( "swipeleft", Profile.onSwipeLeft );
 
-    $( window ).resize( Profile.resizePage(theta) );
+    $( window ).resize( function(event){
+      Profile.resizePage(theta);
+    });
 
   },
 
   resizePage: function(theta){
+    console.log("resized");
+
     tz = Math.round( ( $("#container").width() / 2 ) / Math.tan( Math.PI / panelCount ) )  + 150;
     $("#carousel").css('transform','translateZ( -'+tz+'px )');
     for (var i=0; i < panelCount; i++){
@@ -52,12 +53,20 @@ var Profile = {
 
     Profile.rotateCarousel(theta);
 
+    circleWidth = $("#circle").width();
+    $("#circle").css('height', circleWidth);
+    $("#circle").css('top', ($(window).height() - circleWidth)/2);
+    $("#circle2").css({height: circleWidth/1.5, width: circleWidth/1.5, margin: circleWidth/(Math.PI*2) });
+    $("#citadel").attr('height', circleWidth);
+    $("#citadel").attr('width', circleWidth);
+    // $("#citadel").attr('left', 'circleWidth');
   },
 
   onNavButtonClick: function(event){
     var increment = parseInt( $(this).attr('data-increment') );
     theta += ( 360 / panelCount ) * increment * -1;
     Profile.rotateCarousel(theta);
+    Profile.rotateCircle(theta);
   },
 
   onArrowPress: function(event){
@@ -68,6 +77,7 @@ var Profile = {
     }
     theta += ( 360 / panelCount ) * increment * -1;
     Profile.rotateCarousel(theta);
+    Profile.rotateCircle(theta);
   },
 
 
@@ -105,6 +115,7 @@ var Profile = {
     // }
     theta = ( 360 / panelCount ) * page * -1;
     Profile.rotateCarousel(theta);
+    Profile.rotateCircle(theta);
   },
 
   onScroll: function(event){
@@ -115,18 +126,21 @@ var Profile = {
     }
     theta += ( 360 / panelCount ) * increment * -1;
     Profile.rotateCarousel(theta);
+    Profile.rotateCircle(theta);
   },
 
   onSwipeRight: function(event){
     increment = -1;
     theta += ( 360 / panelCount ) * increment * -1;
     Profile.rotateCarousel(theta);
+    Profile.rotateCircle(theta);
   },
 
   onSwipeLeft: function(event){
     increment = 1;
     theta += ( 360 / panelCount ) * increment * -1;
     Profile.rotateCarousel(theta);
+    Profile.rotateCircle(theta);
   },
 
   rotateCarousel: function(theta){
@@ -151,17 +165,13 @@ var Profile = {
     $(event.currentTarget.children[0]).css('display','none');
   },
 
-  rotateCircle: function(){
-    var random = Math.ceil(Math.random() * 360);
-    var randomB = Math.ceil(Math.random() * 10);
-    $("#circle").css('transform','rotateZ('+random+'deg)');
-    $("#circle").css('padding',randomB);
-    $("#circle").css('border', randomB+ 'px solid #53b1c3');
-    // $("#circle").css({height: random +'px', width: random+'px'});
-    for (var i=0; i < $(".circleText").length; i++){
-      var randomT = Math.ceil(Math.random() * 100);
-      $(".circleText").eq(i).css('transform','translateX('+randomT+'px) translateY('+randomT+'px) rotateZ('+(random*-1)+'deg)');
-    }
+  rotateCircle: function(theta){
+    // var random = Math.ceil(Math.random() * 360);
+    $("#circle").css('transform','rotateZ('+theta+'deg)');
+    // for (var i=0; i < $(".circleText").length; i++){
+    //   var randomT = Math.ceil(Math.random() * 100);
+    //   $(".circleText").eq(i).css('transform','translateX('+randomT+'px) translateY('+randomT+'px) rotateZ('+(theta*-1)+'deg)');
+    // }
   }
 
 }
