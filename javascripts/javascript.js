@@ -119,6 +119,7 @@ var Profile = {
   },
 
   onScroll: function(event){
+    event.preventDefault();
     if (event.wheelDelta > 0){
       var increment = -1;
     } else if (event.wheelDelta < 0 ) {
@@ -168,6 +169,7 @@ var Profile = {
   rotateCircle: function(theta){
     // var random = Math.ceil(Math.random() * 360);
     $("#circle").css('transform','rotateZ('+theta+'deg)');
+    $("#circle2").css('transform','rotateZ('+theta*-2+'deg)');
     // for (var i=0; i < $(".circleText").length; i++){
     //   var randomT = Math.ceil(Math.random() * 100);
     //   $(".circleText").eq(i).css('transform','translateX('+randomT+'px) translateY('+randomT+'px) rotateZ('+(theta*-1)+'deg)');
