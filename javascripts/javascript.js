@@ -45,9 +45,15 @@ var Profile = {
     console.log("resized");
 
     tz = Math.round( ( $("#container").width() / 2 ) / Math.tan( Math.PI / panelCount ) )  + 150;
+    $("#carousel").css('-webkit-transform','translateZ( -'+tz+'px )');
+    $("#carousel").css('-moz-transform','translateZ( -'+tz+'px )');
+    $("#carousel").css('-o-transform','translateZ( -'+tz+'px )');
     $("#carousel").css('transform','translateZ( -'+tz+'px )');
     for (var i=0; i < panelCount; i++){
       var transformString = 'rotateY('+i*40+'deg ) translateZ(' + tz+'px )';
+      $("figure").eq(i).css('-webkit-transform',transformString);
+      $("figure").eq(i).css('-moz-transform',transformString);
+      $("figure").eq(i).css('-o-transform',transformString);
       $("figure").eq(i).css('transform',transformString);
     }
 
@@ -168,7 +174,13 @@ var Profile = {
 
   rotateCircle: function(theta){
     // var random = Math.ceil(Math.random() * 360);
+    $("#circle").css('-webkit-transform','rotateZ('+theta+'deg)');
+    $("#circle").css('-moz-transform','rotateZ('+theta+'deg)');
+    $("#circle").css('-o-transform','rotateZ('+theta+'deg)');
     $("#circle").css('transform','rotateZ('+theta+'deg)');
+    $("#circle2").css('-webkit-transform','rotateZ('+theta*-2+'deg)');
+    $("#circle2").css('-moz-transform','rotateZ('+theta*-2+'deg)');
+    $("#circle2").css('-o-transform','rotateZ('+theta*-2+'deg)');
     $("#circle2").css('transform','rotateZ('+theta*-2+'deg)');
     // for (var i=0; i < $(".circleText").length; i++){
     //   var randomT = Math.ceil(Math.random() * 100);
