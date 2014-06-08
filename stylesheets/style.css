@@ -143,6 +143,7 @@ body {
   top: 50px;
   left: 600px;
   font-size: 1.2em;
+  opacity: 0.8;
 }
 
 img {
@@ -208,6 +209,10 @@ a {
 
 .description {
   font-size: 0.8em;
+}
+
+#name-logo {
+  opacity: 0.8;
 }
 
 /*#carousel figure:nth-child(1) { background: hsla(187, 78%, 38%, 0.9); }
