@@ -202,6 +202,14 @@ a {
   opacity: 0.4;
 }
 
+.year {
+  font-size: 0.7em;
+}
+
+.description {
+  font-size: 0.8em;
+}
+
 /*#carousel figure:nth-child(1) { background: hsla(187, 78%, 38%, 0.9); }
 #carousel figure:nth-child(2) { background: hsla(187, 78%, 38%, 0.9); }
 #carousel figure:nth-child(3) { background: hsla(187, 78%, 38%, 0.9); }
