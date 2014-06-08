@@ -26,7 +26,7 @@ var Profile = {
 
     $(window).on('keyup', Profile.onArrowPress );
 
-    window.addEventListener('mousewheel',Profile.onScroll);
+    window.addEventListener('wheel',Profile.onScroll);
 
     $("#dock").on('click', Profile.onDockClick);
 
@@ -37,6 +37,10 @@ var Profile = {
 
     $( window ).resize( function(event){
       Profile.resizePage(theta);
+    });
+
+    $("#resumelink").click(function(event){
+      window.open('http://talalc.github.io/TCResume.pdf', '_blank');
     });
 
   },
@@ -126,9 +130,9 @@ var Profile = {
 
   onScroll: function(event){
     event.preventDefault();
-    if (event.wheelDelta > 0){
+    if (event.deltaY > 0){
       var increment = -1;
-    } else if (event.wheelDelta < 0 ) {
+    } else if (event.deltaY < 0 ) {
       var increment = 1;
     }
     theta += ( 360 / panelCount ) * increment * -1;
