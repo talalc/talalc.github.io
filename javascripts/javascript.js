@@ -105,11 +105,17 @@ var Profile = {
       case "profile":
         page = 0;
         break;
+      case "skills":
+        page = 1;
+        break;
       case "education":
         page = 3;
         break;
       case "experience":
         page = 2;
+        break;
+      case "hobbies":
+        page = 4;
         break;
       case "project":
         page = 5;
