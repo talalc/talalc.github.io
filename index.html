@@ -14,9 +14,14 @@
   <script src="javascripts/javascript.js"></script>
 </head>
 <body>
-
-  <img id="name-logo" height="100px" src="images/tc1.png">
-  <div id="time"></div>
+  <header>
+    <img id="name-logo" height="100px" src="images/tc1.png">
+    <div id="time"></div>
+    <div id="navigation">
+        <button id="previous" data-increment="-1">Previous</button>
+        <button id="next" data-increment="1">Next</button>
+    </div>
+  </header>
   <div id="container">
   <section id="carouselcontainer">
     <div id="carousel">
@@ -32,9 +37,56 @@
       <table align="center"><tr><td>Languages <i class="fa fa-language"></i><br>Ruby<br>JavaScript<br>C++<br>Java<br>HTML<br>CSS<br><br>Frameworks<br>Ruby on Rails<br>Sinatra<br><br>Libraries <i class="fa fa-book"></i><br>jQuery<br>Backbone</td><td>Testing <i class="fa fa-check-square-o"></i><br>RSpec<br>Capybara<br>Jasmine<br><br>Database <i class="fa fa-database"></i><br>PostgreSQL<br><br>Version Control<br>Git<br>GitHub<br>Heroku<br><br>Management<br>Pivotal Tracker<br>TDD</td></tr></table>
     </figure>
     <figure>Experience <i class="fa fa-building"></i>
+      <div class="expentry">
+      <span class="year">02/2014 - 05/2014</span><br>
+      General Assembly<br>Web Development Immersive Student<br>
+      <ul class="description">
+      <li>12 week Full-Stack Web Development Program</li>
+      <li>Projects - rena, drinkr, Comic Authority</li>
+      </ul>
+      </div>
+      <div class="expentry">
+      <span class="year">08/2013 - 12/2013</span><br>
+      Haida Trading USA<br>Web Designer<br>
+      <ul class="description">
+      <li>Assembled a commercial website for a distribution company utilizing WooCommerce</li>
+      </ul>
+      </div>
+      <div class="expentry">
+      <span class="year">09/2007 - 02/2009</span><br>
+      Downstate Medical Center - Kings County Hospital<br>Academic Associate / Clinical Research Intern<br>
+      <ul class="description">
+      <li>Mentored new associates how to efficiently conduct research in the Emergency Room environment</li>
+      <li>Collected research data using a medical database (MISYS)</li>
+      </ul>
+      </div>
+      <div class="expentry">
+      <span class="year">06/2003 - 06/2009</span><br>
+      Coalition of Concerned Medical Professionals<br>Advocate / Editor / Volunteer<br>
+      <ul class="description">
+      <li>Advocated for uninsured residents of Brooklyn, NY</li>
+      <li>Escorted patients &amp; documented patient histories Managed mail-outs &amp; sponsorships</li>
+      <li>Edited the Coalition’s seasonal publication, “Vital Signs” Recruited more volunteers</li>
+      </ul>
+      </div>
+      <div class="expentry">
+      <span class="year">08/2007 - 06/2008</span><br>
+      Sunnyside Community Services - College Readiness Program<br>Web Designer / Volunteer<br>
+      <ul class="description">
+      <li>Coordinated a committee in the creation of the program’s website</li>
+      <li>Assisted low-income minority high school students with their college applications</li>
+      </ul>
+      </div>
+      <div class="expentry">
+      <span class="year">06/2006 - 08/2006</span><br>
+      College of Staten Island<br>Research Assistant / Intern<br>
+      <ul class="description">
+      <li>Conducted demographic analysis on the suggested Bus Rapid Transit (BRT) lines across NYC using
+Geographic Information Systems (ArcGIS)</li>
+      </ul>
+      </div>
     </figure>
     <figure>Education <i class="fa fa-graduation-cap"></i><br><br>
-      <div class="education">
       <span class="year">2013 - 2014</span><br>
       Queens College <i class="fa fa-laptop"></i><br>
       <span class="description">Pursuing BS in Computer Science</span><br><br>
@@ -63,13 +115,6 @@
     <figure>Project 4 <i class="fa fa-gamepad"></i><br><br>r3na<br><br><img src="images/placeit4.png"><br><br><a href="http://r3na.herokuapp.com">heroku</a><br><br><a href="http://github.com/talalc/rena">github</a>
     </figure>
     </div>
-    <section id="options">
-      <p id="navigation">
-        <button id="previous" data-increment="-1">Previous</button>
-        <button id="next" data-increment="1">Next</button>
-      </p>
-    </section>
-
   </section>
 </div>
 
@@ -89,7 +134,7 @@
     <div class="dockicon"><div class="dockdesc">Projects</div><i class="fa fa-briefcase" id="project"></i></div>
     <div class="dockicon"><div class="dockdesc">Resume</div><i class="fa fa-file-text-o" id="resume"></i></div>
     <div class="dockicon"><div class="dockdesc">email</div><i class="fa fa-envelope" id="mail"></i></div>
-    <div class="dockicon"><div class="dockdesc">Phone</div><i class="fa fa-phone" id="phone"></i></div>
+<!--     <div class="dockicon"><div class="dockdesc">Phone</div><i class="fa fa-phone" id="phone"></i></div> -->
 <!--     <img id="twitter" height="80px" src="images/twitter.svg">
     <img id="education" height="85px" src="images/college.svg">
     <img id="experience" height="75px" src="images/building.svg">

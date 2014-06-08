@@ -131,10 +131,10 @@ body {
   font-size: 0.20em;
 }
 
-#options {
-  position: absolute;
-  bottom: -60px;
-  left: 40%;
+#navigation{
+  position: fixed;
+  top: 50px;
+  right: 10%;
   opacity: 0.65;
 }
 
@@ -215,6 +215,15 @@ a {
   opacity: 0.8;
 }
 
+.expentry {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.expentry ul {
+  margin-top: 2px;
+  margin-left: -12px;
+}
 /*#carousel figure:nth-child(1) { background: hsla(187, 78%, 38%, 0.9); }
 #carousel figure:nth-child(2) { background: hsla(187, 78%, 38%, 0.9); }
 #carousel figure:nth-child(3) { background: hsla(187, 78%, 38%, 0.9); }
